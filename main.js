@@ -1,16 +1,19 @@
 "use strict";
 
-const { sub1Question1 } = require("./question_class");
-const { sub1Question2 } = require("./question_class");
-const { sub1Question3 } = require("./question_class");
-const { sub2Question1 } = require("./question_class");
-const { sub2Question2 } = require("./question_class");
-const { sub2Question3 } = require("./question_class");
+const { Question } = require("./classes");
+const { Subject } = require("./classes");
 
+let sub1Question1 = new Question("Как создать папку?",["mddir", "cddir", "mcdir"],["mkdir"],"cddir");
+let sub1Question2 = new Question("Как посмотреть текущие процессы?",["pro", "hop", "procces"],["top"],"pro");
+let sub1Question3 = new Question("Какой командой можно сгенерировать ssh ключ?",["ssh", "ssh-key", "sshkey"],["ssh-keygen"],"ssh");
 
-function createQuestions(question1, question2, question3) {
+let sub2Question1 = new Question("Как создать локальный репозиторий в папке с проектом?",["mddir", "cddir", "mcdir"],["mkdir"],"cddir");
+let sub2Question2 = new Question("Как создать ветку?",["git", "branch", "git b"],["git branch"],"git b");
+let sub2Question3 = new Question("Как удалить ветку?",["git b -d", "git branch", "git -d"],["git branch -d"],"git branch");
 
-  let subjectQuestions = {question1, question2, question3};
+let subject1Questions = {sub1Question1, sub1Question2, sub1Question3};
+
+function createQuestions(subjectQuestions) {
 
   let listQuestions = {};
 
@@ -22,18 +25,8 @@ function createQuestions(question1, question2, question3) {
   return listQuestions
 }
 
-// console.log(createQuestions(sub1Question1, sub1Question2, sub1Question3));
+let a = createQuestions(subject1Questions);
+// console.log(a);
 
-class Subject {
-
-  constructor(name, time, listQuestions) {
-    this.name = name;
-    this.time = time + " hours";
-    this.listQuestions = listQuestions;
-  }
-
-  
-}
-
-let subject1 = new Subject("Bash tools", 48, createQuestions(sub1Question1, sub1Question2, sub1Question3));
+let subject1 = new Subject("Bash tools", 48, a);
 console.log(subject1);
