@@ -1,107 +1,39 @@
 "use strict";
 
-// Объект со списком объектов с вопросами и неправильными и правильными ответами ко всем вопросам темы 1
+const { sub1Question1 } = require("./question_class");
+const { sub1Question2 } = require("./question_class");
+const { sub1Question3 } = require("./question_class");
+const { sub2Question1 } = require("./question_class");
+const { sub2Question2 } = require("./question_class");
+const { sub2Question3 } = require("./question_class");
 
-let questionsSubject1 = {
 
-  questions1: {
+function createQuestions(question1, question2, question3) {
 
-    questions: "Как создать папку?",
-    wrongAnswers: ["mddir", "cddir", "mcdir"],
-    rightAnswer: ["mkdir"],
-    receivedAnswer: "cddir"
-  },
+  let subjectQuestions = {question1, question2, question3};
 
-  questions2: {
+  let listQuestions = {};
 
-    questions: "Как посмотреть текущие процессы?",
-    wrongAnswers: ["mddir", "cddir", "mcdir"],
-    rightAnswer: ["mkdir"],
-    receivedAnswer: "cddir"
-  },
+  for (let key in subjectQuestions) {
 
-  questions3: {
-
-    questions: "Что такое grep и для чего он нужен?",
-    wrongAnswers: ["mddir", "cddir", "mcdir"],
-    rightAnswer: ["mkdir"],
-    receivedAnswer: "cddir"
-  },
-
-  questions4: {
-
-    questions: "Какой командой можно сгенерировать ssh ключ?",
-    wrongAnswers: ["mddir", "cddir", "mcdir"],
-    rightAnswer: ["mkdir"],
-    receivedAnswer: "cddir"
-  },
-
-  questions5: {
-
-    questions: "Что такое Makefile?",
-    wrongAnswers: ["mddir", "cddir", "mcdir"],
-    rightAnswer: ["mkdir"],
-    receivedAnswer: "cddir"
+    let string = JSON.stringify(subjectQuestions[key]);
+    listQuestions[key] = JSON.parse(string);
   }
-};
+  return listQuestions
+}
 
-
-// Объект со списком неправильных и правильных ответов к вопросу 1 темы 1
-
-// let answersSubject1 = {
-//
-//   wrongAnswers: ["mddir", "cddir", "mcdir"],
-//   rightAnswer: ["mkdir"],
-//   receivedAnswer: "cddir"
-// };
-
-// let questions1 = ["Как создать папку?", "Как посмотреть текущие процессы?", "Что такое grep и для чего он нужен?", "Какой командой можно сгенерировать ssh ключ?", "Что такое Makefile?"];
-
-// Объект со списком неправильных и правильных ответов к вопросу 1 темы 2
-
-let answersSubject2 = {
-
-  wrongAnswers: [],
-  rightAnswer: [],
-  receivedAnswer: ""
-};
-
-let questions2 = ["Как создать локальный репозиторий в папке с проектом?", "Как игнорировать файлы и не добавлять их в репозиторий?", "Как создать ветку?", "Как удалить ветку?"];
-
-
+// console.log(createQuestions(sub1Question1, sub1Question2, sub1Question3));
 
 class Subject {
 
-  constructor(name, time, questionsSubject) {
+  constructor(name, time, listQuestions) {
     this.name = name;
     this.time = time + " hours";
-    this.questionsSubject = questionsSubject;
+    this.listQuestions = listQuestions;
   }
 
-  testAnswer() {
-
-    let answer = this.questionsSubject.receivedAnswer;
-
-    this.questionsSubject.rightAnswer.forEach(function (item) {
-
-      if (answer === item) {
-        console.log("Your answer is correct!");
-      }
-    });
-
-    this.questionsSubject.wrongAnswers.forEach(function (item) {
-
-      if (answer === item) {
-        console.log("Think a little more...");
-      }
-    });
-
-  }
+  
 }
 
-
-let subject1 = new Subject("Bash tools", 48, questionsSubject1);
-subject1.testAnswer();
-
-// let subject2 = new Subject("Git tools", 56, questionsSubject2);
-// console.log(subject2);
+let subject1 = new Subject("Bash tools", 48, createQuestions(sub1Question1, sub1Question2, sub1Question3));
+console.log(subject1);
