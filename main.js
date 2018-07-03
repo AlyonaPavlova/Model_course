@@ -13,20 +13,5 @@ let sub2Question3 = new Question("Как удалить ветку?",["git b -d"
 
 let subject1Questions = {sub1Question1, sub1Question2, sub1Question3};
 
-function createQuestions(subjectQuestions) {
-
-  let listQuestions = {};
-
-  for (let key in subjectQuestions) {
-
-    let string = JSON.stringify(subjectQuestions[key]);
-    listQuestions[key] = JSON.parse(string);
-  }
-  return listQuestions
-}
-
-let a = createQuestions(subject1Questions);
-// console.log(a);
-
-let subject1 = new Subject("Bash tools", 48, a);
+let subject1 = new Subject("Bash tools", 48, subject1Questions);
 console.log(subject1);
