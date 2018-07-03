@@ -2,7 +2,7 @@
 
 // Объект со списком объектов с вопросами и неправильными и правильными ответами ко всем вопросам темы 1
 
-let answersSubject1 = {
+let questionsSubject1 = {
 
   questions1: {
 
@@ -42,7 +42,7 @@ let answersSubject1 = {
     wrongAnswers: ["mddir", "cddir", "mcdir"],
     rightAnswer: ["mkdir"],
     receivedAnswer: "cddir"
-  },
+  }
 };
 
 
@@ -72,25 +72,24 @@ let questions2 = ["Как создать локальный репозитори
 
 class Subject {
 
-  constructor(name, time, questions, answersSubject) {
+  constructor(name, time, questionsSubject) {
     this.name = name;
     this.time = time + " hours";
-    this.questions = questions;
-    this.answersSubject = answersSubject;
+    this.questionsSubject = questionsSubject;
   }
 
   testAnswer() {
 
-    let answer = this.answersSubject.receivedAnswer;
+    let answer = this.questionsSubject.receivedAnswer;
 
-    this.answersSubject.rightAnswer.forEach(function (item) {
+    this.questionsSubject.rightAnswer.forEach(function (item) {
 
       if (answer === item) {
         console.log("Your answer is correct!");
       }
     });
 
-    this.answersSubject.wrongAnswers.forEach(function (item) {
+    this.questionsSubject.wrongAnswers.forEach(function (item) {
 
       if (answer === item) {
         console.log("Think a little more...");
@@ -101,7 +100,7 @@ class Subject {
 }
 
 
-let subject1 = new Subject("Bash tools", 48, questions1, answersSubject1);
+let subject1 = new Subject("Bash tools", 48, questionsSubject1);
 subject1.testAnswer();
 
 // let subject2 = new Subject("Git tools", 56, questionsSubject2);
