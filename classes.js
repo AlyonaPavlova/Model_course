@@ -31,31 +31,30 @@ class Question {
 
 class Subject {
 
-  constructor(name, time, listQuestions, state) {
+  constructor(name, time, listQuestions) {
     this.name = name;
     this.time = time + " hours";
     this.listQuestions = listQuestions;
-    this.state = state || this.stateOpen; // Если состояние темы не указано, значит она открыта
+    this.stateStatus = 1;  // Когда мы создаем новую тему, ее статус равен 1, т.е. она открыта
+
+    Subject.count++;
   }
 
-  stateOpen = 1;
-  stateClose = 0;
-
   get open() {
-    this.state = this.stateOpen;  // При вызове функции состояние темы переходит в открытое
+    this.stateStatus = 1; // При вызове функции состояние темы переходит в открытое
   }
 
   get close() {
-    this.state = this.stateClose; // При вызове функции состояние темы переходит в закрытое
+    this.stateStatus = 0; // При вызове функции состояние темы переходит в закрытое
   }
 
   get stateString() {              // Проверяем состояние темы и выводим сообщение о состоянии
 
-    switch (this.state) {
-      case this.stateOpen:
+    switch (this.stateStatus) {
+      case this.stateStatus === 1:
         return "Subject is open";
 
-      case this.stateClose:
+      case this.stateStatus === 0:
         return "Subject is close";
     }
   }
@@ -77,12 +76,15 @@ class Student extends User {
 
   constructor(name, studiedSubjects) {
     super(name);
+    this.allSubjects = Subject.count;
     this.studiedSubjects = studiedSubjects;
+
+    Student.count++;
   }
 
-  static countingSubjects() {  // Функция для подсчета закрытых тем студента (т.е. пройденных)
+   countingSubjects() {  // Функция для подсчета закрытых тем студента (т.е. пройденных)
 
-    if(this.state = this.stateClose) {
+    if(this.stateStatus === 0) {  // Нужно получить доступ к конкретному экземпляру темы
 
       this.studiedSubjects += 1; // Если состояние темы = закрытому, то прибавляем к значению пройденных тем 1
     }
@@ -96,6 +98,8 @@ class Curator extends User {
   constructor(name, numberStudents) {
     super(name);
     this.numberStudents = numberStudents;
+
+    Curator.count++;
   }
 
   static  countingStudents() {  // Функция должна складывать количество созданных экземпляров класса Student для конкретного куратора
