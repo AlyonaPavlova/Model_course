@@ -1,73 +1,51 @@
 "use strict";
 
-const { Question } = require("./classes");
-const { Subject } = require("./classes");
-const { User } = require("./classes");
-const { Student } = require("./classes");
-const { Curator } = require("./classes");
 const { Course } = require("./classes");
+const { Subject } = require("./classes");
+const { Question } = require("./classes");
+const { Answer } = require("./classes");
 
-let sub1Question1 = new Question("Как создать папку?",["mddir", "cddir", "mcdir"],["mkdir"],"cddir");
-let sub1Question2 = new Question("Как посмотреть текущие процессы?",["pro", "hop", "procces"],["top"],"pro");
-let sub1Question3 = new Question("Какой командой можно сгенерировать ssh ключ?",["ssh", "ssh-key", "sshkey"],["ssh-keygen"],"ssh");
+let ans11 = new Answer("bash", true);
+let ans12 = new Answer("no bash", false);
+let ans13 = new Answer("bax", false);
 
-let sub2Question1 = new Question("Как создать локальный репозиторий в папке с проектом?",["mddir", "cddir", "mcdir"],["mkdir"],"cddir");
-let sub2Question2 = new Question("Как создать ветку?",["git", "branch", "git b"],["git branch"],"git b");
-let sub2Question3 = new Question("Как удалить ветку?",["git b -d", "git branch", "git -d"],["git branch -d"],"git branch");
+let ans1 = {ans11, ans12, ans13};
 
-let subject1Questions = {sub1Question1, sub1Question2, sub1Question3};
+let ans21 = new Answer("bash", true);
+let ans22 = new Answer("no bash", false);
+let ans23 = new Answer("bax", false);
 
-// let subject1 = new Subject("Bash tools", 48, subject1Questions);
-// console.log(subject1);
+let ans2 = {ans21, ans22, ans23};
 
-Subject.count = 0;
-Student.count = 0;
-Curator.count = 0;
+let ans31 = new Answer("bash", true);
+let ans32 = new Answer("no bash", false);
+let ans33 = new Answer("bax", false);
 
-Subject.showSubjects = function () {
-  console.log("Total " + this.count)
-};
-
-Student.showSubjects = function () {
-  console.log("Total " + this.count)
-};
-
-Curator.showSubjects = function () {
-  console.log("Total " + this.count)
-};
-
-let subject1 = new Subject("Bash tools", 48, subject1Questions);
-console.log(subject1);
-new Subject();
-new Subject();
-new Subject();
-
-// Subject.showSubjects();
-
-new Student();
-new Student();
-new Curator();
-
-// Student.showSubjects();
-// Curator.showSubjects();
+let ans3 = {ans31, ans32, ans33};
 
 
-Subject.countingSubjects = function () {
 
-  let allSubjectsStudent = [];
+let question11 = new Question("What is bash?", ans1);
+let question12 = new Question("What is ", ans2);
+let question13 = new Question("What?", ans3);
 
-  for (let i = 0; i < Subject.count; i++) {
+let obj1 = {question11, question12, question13};
 
-    allSubjectsStudent.push(subject1);  // Отследить создание new Subject(); и записать в массив этот экземпляр
-  }
+let question21 = new Question("What is git?");
+let question22 = new Question("What is ");
+let question23 = new Question("What?");
 
-  return allSubjectsStudent;
-};
+let obj2 = {question21, question22, question23};
 
-console.log(Subject.countingSubjects());
 
-// let a = new Course("Back-end", 3, Subject.showSubjects(), Student.showSubjects(), Curator.showSubjects());
-// console.log(a);
 
-let b = new Student("alena");
-// console.log(b);
+let bash = new Subject("Bash", obj1);
+
+let git = new Subject("Git", obj2);
+
+let subjects = {bash, git};
+
+
+
+let backend = new Course("Back-end", subjects);
+console.log(backend);
