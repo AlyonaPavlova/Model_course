@@ -1,31 +1,30 @@
 "use strict";
 
-class Question {
+class Course {
 
-  constructor(question, wrongAnswers, rightAnswer, receivedAnswer) {
-    this.question = question;
-    this.wrongAnswers = wrongAnswers;
-    this.rightAnswer = rightAnswer;
-    this.receivedAnswer = receivedAnswer;
+  constructor(name, numberHours, subjects, students, curators) {
+    this.name = name;
+    this.numberHours = numberHours;
+    this.subjects = subjects;
+    this.students = students;
+    this.curators = curators;
   }
 
-  testAnswer() {
+  static countingHours() {
 
-    let answer = this.receivedAnswer;
+    //  Функция складывает количество часов всех экземпляров тем
+  }
 
-    this.rightAnswer.forEach(function (item) {
+  static countingSubjects() {  // Функция создает массив со всеми темами
 
-      if (answer === item) {
-        console.log("Your answer is correct!");
-      }
-    });
+  }
 
-    this.wrongAnswers.forEach(function (item) {
+  static countingStudents() {  // Функция создает массив со всеми студентами
 
-      if (answer === item) {
-        console.log("Think a little more...");
-      }
-    });
+  }
+
+  static countingCurators() {  // Функция создает массив со всеми кураторами
+
   }
 }
 
@@ -65,6 +64,43 @@ class Subject {
   }
 }
 
+class Question {
+
+  constructor(question, listAnswers) {
+    this.question = question;
+    this.listAnswers = listAnswers;
+  }
+}
+
+class Answer {
+
+  constructor(wrongAnswers, rightAnswer, receivedAnswer) {
+    this.wrongAnswers = wrongAnswers;
+    this.rightAnswer = rightAnswer;
+    this.receivedAnswer = receivedAnswer;
+    this.correct = this.testAnswer();
+  }
+
+  testAnswer() {
+
+    let answer = this.receivedAnswer;
+
+    this.rightAnswer.forEach(function (item) {
+
+      if (answer === item) {
+        console.log("The answer is correct!");
+      }
+    });
+
+    this.wrongAnswers.forEach(function (item) {
+
+      if (answer === item) {
+        console.log("Wrong answer...");
+      }
+    });
+  }
+}
+
 class User {
 
   constructor(name) {
@@ -89,7 +125,6 @@ class Student extends User {
       this.studiedSubjects += 1; // Если состояние темы = закрытому, то прибавляем к значению пройденных тем 1
     }
 
-    // Subject.close();
   }
 }
 
@@ -111,38 +146,11 @@ class Curator extends User {
   }
 }
 
-class Course {
-
-  constructor(name, numberHours, subjects, students, curators) {
-    this.name = name;
-    this.numberHours = numberHours;
-    this.subjects = subjects;
-    this.students = students;
-    this.curators = curators;
-  }
-
-  static countingHours() {
-
-    // Subject.constructor.time Тут нужно как-то сложить количество часов всех экземпляров тем
-  }
-
-  static countingSubjects() {  // Функция создает массив со всеми темами
-
-  }
-
-  static countingStudents() {  // Функция создает массив со всеми студентами
-
-  }
-
-  static countingCurators() {  // Функция создает массив со всеми кураторами
-
-  }
-}
-
 module.exports = {
 
   Question,
   Subject,
+  Answer,
   User,
   Student,
   Curator,
